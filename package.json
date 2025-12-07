@@ -1,11 +1,20 @@
 {
   "name": "big-file-stream",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "writestream.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["stream","big file","large file","copy","real time","transfer speed","percentage completed","time taken"],
+  "keywords": [
+    "stream",
+    "big file",
+    "large file",
+    "copy",
+    "real time",
+    "transfer speed",
+    "percentage completed",
+    "time taken"
+  ],
   "author": "",
   "license": "ISC",
   "description": "Copy file using streams from source to destination"
