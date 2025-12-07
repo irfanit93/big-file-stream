@@ -3,9 +3,7 @@
 
 name: big-file-stream
 
-on:
-  release:
-    types: [created]
+on: [push]
 
 jobs:
   build:
