@@ -24,10 +24,12 @@ async function run(src, dest) {
     //for(let i=0;i<1;i++){
     try {
       readStream = fs.createReadStream(src, { highWaterMark: 11 * 1048576 });
+      
       let lastIndex = dest.lastIndexOf("/");
+      if(lastIndex!==-1)
       await mkdir(dest.slice(0, lastIndex), { recursive: true });
       writeStream = fs.createWriteStream(
-        dest.slice(0, lastIndex) + dest.slice(lastIndex),
+        lastIndex!==-1 ? (dest.slice(0, lastIndex) + dest.slice(lastIndex)):dest,
         { /*flags:"a",*/ highWaterMark: 350 * 1048576 }
       );
     } catch (error) {
@@ -60,8 +62,6 @@ async function run(src, dest) {
       endTime = new Date();
       var secsTaken = (endTime - startTime) / 1000;
       process.stdout.clearLine();
-      console.log(writeStream.writableHighWaterMark);
-      console.log(readStream.readableHighWaterMark);
       console.log("Total time taken: " + secsTaken + " secs");
       console.log(
         "Avg speed:" +
