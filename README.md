@@ -1,0 +1,1 @@
+Within the root of the project, copy any large big file from src directory to destination directory at ease.
