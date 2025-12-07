@@ -8,21 +8,31 @@ copy("data/anyexistingfile.txt","data1/data2/data3/newcopy.txt");
 <br/>
 <b>Signature of copy function:</b><br/>
 copy(sourceFilePath,destinationFilePath)
-
-Highlights:
+<br/>
+<b>Highlights:</b>
+<br/>
 No dependencies
+<br/>
 Small 3Kb
+<br/>
 See live completed percentage, transfer speed and Time take to copy in console directly
+<br/>
 
-Whats supported as of now:
+<b>Whats supported as of now:</b>
+<br/>
 Support only copying single file in single call
+<br/>
 Avoids memory leak by closing both read and write stream on error
+<br/>
 
-Future Update:
+<b>Future Update:</b>
+<br/>
 Data streaming
+<br/>
 Multiple file streaming
+<br/>
 
-Tested in Node js 20
+<b>Tested in Node js 20</b>
 
 
 
