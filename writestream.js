@@ -1,6 +1,35 @@
 import fs from "node:fs";
 import { mkdir } from "node:fs/promises";
 
+import https from 'node:https';
+import http from 'node:http';
+
+const copyFromHttp = (url,params={options:null,data:null,fileName:null,secure:true})=>{
+//For POST requests of type json, you need to stringify the data property using JSON.stringify before calling this function
+if(params.secure && url.startsWith("http:")){
+  const WARNING = "BEWARE!!! You are making a http call using insecure connection. if you want to make an insecure http call, pass the secure:false in the function params object";
+  console.log(WARNING);
+  return WARNING;
+}
+const successCallback = (res)=>{ 
+	const lastIndex = url.lastIndexOf("/");
+	let fileNme = params.fileName || url.slice(lastIndex+1);
+	if(fileNme=="")
+	fileNme = "big-file-stream-NEW-FILE";
+	const writeStream = fs.createWriteStream(fileNme,{ highWaterMark: 350 * 1048576 });
+	res.pipe(writeStream);
+}
+let request;
+if(params.options)
+  request = params.secure ? https.request(url, params.options,successCallback):http.request(url, params.options,successCallback);
+else
+request = params.secure ? https.request(url,successCallback):http.request(url,successCallback);
+if(params.options?.method?.toUpperCase()=="POST"){
+  request.write(params.data || JSON.stringify({}));
+}
+request.end();
+}
+
 async function run(src, dest) {
   fs.stat(src, async (err, stats) => {
     if (err) {
@@ -24,12 +53,10 @@ async function run(src, dest) {
     //for(let i=0;i<1;i++){
     try {
       readStream = fs.createReadStream(src, { highWaterMark: 11 * 1048576 });
-      
       let lastIndex = dest.lastIndexOf("/");
-      if(lastIndex!==-1)
       await mkdir(dest.slice(0, lastIndex), { recursive: true });
       writeStream = fs.createWriteStream(
-        lastIndex!==-1 ? (dest.slice(0, lastIndex) + dest.slice(lastIndex)):dest,
+        dest.slice(0, lastIndex) + dest.slice(lastIndex),
         { /*flags:"a",*/ highWaterMark: 350 * 1048576 }
       );
     } catch (error) {
@@ -62,6 +89,8 @@ async function run(src, dest) {
       endTime = new Date();
       var secsTaken = (endTime - startTime) / 1000;
       process.stdout.clearLine();
+      console.log(writeStream.writableHighWaterMark);
+      console.log(readStream.readableHighWaterMark);
       console.log("Total time taken: " + secsTaken + " secs");
       console.log(
         "Avg speed:" +
@@ -82,3 +111,6 @@ const copy = (src, dest) => {
 };
 
 export default copy;
+export {
+  copyFromHttp
+};
