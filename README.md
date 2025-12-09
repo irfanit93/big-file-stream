@@ -1,12 +1,12 @@
 Within the root of the project, copy any large big file from src directory to destination directory at ease using the copy function.
 <br/>
-<b>UPDATE v 1.0.5:</b>
+<b>UPDATE v 1.0.8:</b>
 <br/>
 New function copyFromHttp added.
 <br/>
 <b>Signature:</b>
 <br/>
-copyFromHttp = (url:string,params={options:Object,data:string|Buffer|Uint8Array,fileName:string,secure:boolean})
+copyFromHttp = (url:string,params={options:Object,data:string or Buffer or Uint8Array,fileName:string,secure:boolean})
 <br/>
 <b>Usage:</b>
 <br/>
