@@ -6,7 +6,7 @@ New function copyFromHttp added.
 <br/>
 <b>Signature:</b>
 <br/>
-copyFromHttp = (url:string,params={options:Object,data:&lt;string&gt; | &lt;Buffer&gt; | &lt;Uint8Array&gt;,fileName:string,secure:boolean})
+copyFromHttp = (url:string,params={options:Object,data:string|Buffer|Uint8Array,fileName:string,secure:boolean})
 <br/>
 <b>Usage:</b>
 <br/>
