@@ -15,6 +15,9 @@
     "percentage completed",
     "time taken"
   ],
+  "repository":{
+    "url":"https://github.com/irfanit93/big-file-stream"
+  },
   "author": "",
   "license": "ISC",
   "description": "Copy file using streams from source to destination"
