@@ -1,5 +1,9 @@
 Within the root of the project, copy any large big file from src directory to destination directory at ease using the copy function.
 <br/>
+<b>UPDATE v 1.0.9:</b>
+<br/>
+Minor bug fixes for copyFromHttp and updated Readme for more uses of copyFromHttp. see updated examples below:
+<br/>
 <b>UPDATE v 1.0.8:</b>
 <br/>
 New function copyFromHttp added.
@@ -26,7 +30,7 @@ copyFromHttp("https://exampledomain.com/allusers",{fileName:"everyusers.java"});
 <br/>
 download any software with exact download link of file:
 <br/>
-copyFromHttp("https://vscode.download.prss.microsoft.com/dbazure/download/stable/bf9252a2fb45be6893dd8870c0bf37e2e1766d61/VSCodeUserSetup-x64-1.106.3.exe",{fileName:"vscode.exe"});
+copyFromHttp("https://vscode.download.prss.microsoft.com/dbazure/download/stable/<br/>bf9252a2fb45be6893dd8870c0bf37e2e1766d61/VSCodeUserSetup-x64-1.106.3.exe",{fileName:"vscode.exe"});
 <br/>
 For insecure connections:
 <br/>
