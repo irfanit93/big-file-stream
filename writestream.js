@@ -4,28 +4,29 @@ import { mkdir } from "node:fs/promises";
 import https from 'node:https';
 import http from 'node:http';
 
-const copyFromHttp = (url,params={options:null,data:null,fileName:null,secure:true})=>{
+const copyFromHttp = (url,{options=null,data=null,fileName=null,secure=true}={})=>{
 //For POST requests of type json, you need to stringify the data property using JSON.stringify before calling this function
-if(params.secure && url.startsWith("http:")){
+if(secure && url.startsWith("http:")){
   const WARNING = "BEWARE!!! You are making a http call using insecure connection. if you want to make an insecure http call, pass the secure:false in the function params object";
   console.log(WARNING);
   return WARNING;
 }
+console.log("Secure",options,data,fileName,secure);
 const successCallback = (res)=>{ 
 	const lastIndex = url.lastIndexOf("/");
-	let fileNme = params.fileName || url.slice(lastIndex+1);
+	let fileNme = fileName || url.slice(lastIndex+1);
 	if(fileNme=="")
 	fileNme = "big-file-stream-NEW-FILE";
 	const writeStream = fs.createWriteStream(fileNme,{ highWaterMark: 350 * 1048576 });
 	res.pipe(writeStream);
 }
 let request;
-if(params.options)
-  request = params.secure ? https.request(url, params.options,successCallback):http.request(url, params.options,successCallback);
+if(options)
+  request = secure ? https.request(url, options,successCallback):http.request(url, options,successCallback);
 else
-request = params.secure ? https.request(url,successCallback):http.request(url,successCallback);
-if(params.options?.method?.toUpperCase()=="POST"){
-  request.write(params.data || JSON.stringify({}));
+request = secure ? https.request(url,successCallback):http.request(url,successCallback);
+if(options?.method?.toUpperCase()=="POST"){
+  request.write(data || JSON.stringify({}));
 }
 request.end();
 }

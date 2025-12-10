@@ -6,13 +6,27 @@ New function copyFromHttp added.
 <br/>
 <b>Signature:</b>
 <br/>
-copyFromHttp = (url:string,params={options:Object,data:string or Buffer or Uint8Array,fileName:string,secure:boolean})
+copyFromHttp = (url:string,{options:Object,data:string or Buffer or Uint8Array,fileName:string,secure:boolean})
 <br/>
 <b>Usage:</b>
 <br/>
 By Default your request is sent over secure http connection:
 <br/>
+you can pass any http url here, the response will be saved in the fileName which is nothing but the last part of the url(in the below case its fileName.txt,1,allusers)
+<br/>
 copyFromHttp("https://exampledomain.com/fileName.txt");
+<br/>
+copyFromHttp("https://exampledomain.com/api/1");
+<br/>
+copyFromHttp("https://exampledomain.com/allusers");
+<br/>
+if you want to override the fileName, you can give fileName key as second paramter like below:
+<br/>
+copyFromHttp("https://exampledomain.com/allusers",{fileName:"everyusers.java"});
+<br/>
+download any software with exact download link of file:
+<br/>
+copyFromHttp("https://vscode.download.prss.microsoft.com/dbazure/download/stable/bf9252a2fb45be6893dd8870c0bf37e2e1766d61/VSCodeUserSetup-x64-1.106.3.exe",{fileName:"vscode.exe"});
 <br/>
 For insecure connections:
 <br/>
