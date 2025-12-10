@@ -1,11 +1,11 @@
 {
   "name": "big-file-stream",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": "writestream.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [ 
+  "keywords": [
     "stream",
     "big file",
     "large file",
@@ -15,8 +15,8 @@
     "percentage completed",
     "time taken"
   ],
-  "repository":{
-    "url":"https://github.com/irfanit93/big-file-stream"
+  "repository": {
+    "url": "https://github.com/irfanit93/big-file-stream"
   },
   "author": "",
   "license": "ISC",
